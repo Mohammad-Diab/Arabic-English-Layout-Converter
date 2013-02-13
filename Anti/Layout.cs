@@ -46,5 +46,15 @@ namespace Anti
                     str.Append(text[i]);
             return str.ToString();
         }
+
+        public static bool IsArabic(string text)
+        {
+            return text.Count(c => c >= '\u0600' && c <= '\u06FF') > text.Count(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+        }
+
+        public static string Auto(string text)
+        {
+            return IsArabic(text) ? ToEnglish(text) : ToArabic(text);
+        }
     }
 }
